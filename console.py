@@ -73,7 +73,7 @@ class HBNBCommand(cmd.Cmd):
                 pline = pline[2].strip()  # pline is now str
                 if pline:
                     # check for *args or **kwargs
-                    if pline[0] is '{' and pline[-1] is'}'\
+                    if pline[0] is '{' and pline[-1] is '}'\
                             and type(eval(pline)) is dict:
                         _args = pline
                     else:
@@ -115,13 +115,36 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """ Create an object of any class"""
+        print(args)
+        line = args.split()
+        print(line)
         if not args:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
+        elif line[0] not in HBNBCommand.classes:
             print("** class doesn't exist **")
             return
-        new_instance = HBNBCommand.classes[args]()
+        new_instance = HBNBCommand.classes[line[0]]()
+        new_obj = {}
+        if len(line) > 1:
+            lines = [keyValues.split('=') for keyValues in line[1:]]
+            for key in lines:
+                if len(key) == 2:
+                    key, keyValue = key
+                    # checking values data type
+                    if keyValue[0] == '"' and keyValue[-1] == '"':
+                        newValue1 = keyValue[1:-1]
+                        newValue = newValue1.replace('_', ' ')
+                    elif keyValue.isnumeric():
+                        newValue = int(keyValue)
+                    else:
+                        try:
+                            newValue = float(value)
+                        except e:
+                            newValue = None
+                    value = newValue
+                    if value is not None:
+                        setattr(new_instance, key, value)
         storage.save()
         print(new_instance.id)
         storage.save()
@@ -319,6 +342,7 @@ class HBNBCommand(cmd.Cmd):
         """ Help information for the update class """
         print("Updates an object with new information")
         print("Usage: update <className> <id> <attName> <attVal>\n")
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
