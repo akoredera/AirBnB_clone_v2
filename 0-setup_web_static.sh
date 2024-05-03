@@ -17,5 +17,6 @@ sudo echo "<html>
 </html>" | sudo tee /data/web_static/releases/test/index.html
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 chown -R ubuntu:ubuntu /data/
-sudo sed -i 's/listen 80 default_server/a \n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t},' /etc/nginx/sites-enabled/default
+sudo sed -i 's/root \/var\/www\/html;/# root \/var\/www\/html;\n\tlocation \/hbnb_static {\n\t\talias \/data\/web_static\/current\/;\n\t}/' /etc/nginx/sites-enabled/default
+#sudo sed -i 's/listen 80 default_server/a \n\tlocation /hbnb_static {\n\t\talias /data/web_static/current/;\n\t},' /etc/nginx/sites-enabled/default
 sudo service nginx restart
