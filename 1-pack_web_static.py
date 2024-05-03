@@ -17,11 +17,11 @@ def do_pack():
     of the web_static folder of AirBnB Clone
     '''
     current_datetime = datetime.now()
-    local('mkdir -p /root/AirBnB_clone_v2/versions')
-    formatted_datetime = current_datetime.strftime("%Y%m%d%H%M%S")
-    result = local('tar -cvzf versions/web_static_{}.tgz web_static/'
-                   .format(formatted_datetime))
-    if result.succeeded:
+    try:
+        local('mkdir -p /root/AirBnB_clone_v2/versions')
+        formatted_datetime = current_datetime.strftime("%Y%m%d%H%M%S")
+        result = local('tar -cvzf versions/web_static_{}.tgz web_static/'
+                       .format(formatted_datetime))
         return "/root/AirBnB_clone_v2/versions/web_static_{}.tgz"
-    else:
+    except Exception as e:
         return None
