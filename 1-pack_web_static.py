@@ -1,9 +1,5 @@
 #!/usr/bin/python3
-'''
-Compress before sending
-'''
-
-from fabric.api import *
+from fabric.api import local
 from datetime import datetime
 
 
