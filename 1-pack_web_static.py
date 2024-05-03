@@ -22,6 +22,6 @@ def do_pack():
         formatted_datetime = current_datetime.strftime("%Y%m%d%H%M%S")
         result = local('tar -cvzf versions/web_static_{}.tgz web_static/'
                        .format(formatted_datetime))
-        return "/root/AirBnB_clone_v2/versions/web_static_{}.tgz"
+        return "versions/web_static_{}.tgz".format(formatted_datetime)
     except Exception as e:
         return None
