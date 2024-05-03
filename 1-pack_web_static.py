@@ -12,7 +12,7 @@ def do_pack():
     current_datetime = datetime.now()
     formatted_datetime = strftime("%Y%m%d%H%M%S")
     try:
-        local('mkdir -p /root/AirBnB_clone_v2/versions')
+        local('mkdir -p versions')
         result = local('tar -cvzf versions/web_static_{}.tgz web_static/'
                        .format(formatted_datetime))
         return "versions/web_static_{}.tgz".format(formatted_datetime)
