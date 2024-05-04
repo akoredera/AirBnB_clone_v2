@@ -17,16 +17,16 @@ def do_deploy(archive_path):
         if not (os.path.exists(archive_path):
             return False
         put('archive_path, /tmp/')
-        new_file = archive_path[:-4]
+        new_file = archive_path[-18:-4]
          run('sudo mkdir -p /data/web_static/\
-releases/{}/'.format(new_file))
+releases/web_static_{}/'.format(new_file))
         run('sudo tar -xzf /tmp/archive_path -C\
-                /data/web_static/releases/{}/'.format(new_file))
+                /data/web_static/releases/web_static_{}/'.format(new_file))
         run('sudo rm /tmp/archive_path')
-        run('sudo mv /data/web_static/releases/{}/web)static/* /data/web_static/releases/{}'.format(new_file, new_file))
-        run('rm -rf /data/web_static/releases/{}/web_static'.format(new_file))
+        run('sudo mv /data/web_static/releases/web_static_{}/web_static/* /data/web_static/releases/web_static_{}'.format(new_file, new_file))
+        run('rm -rf /data/web_static/releases/web_static_{}/web_static'.format(new_file))
         run('sudo rm -rf /data/web_static/current')
-        run('sudo ln sudo ln -sf /data/web_static/releases/{}\
+        run('sudo ln sudo ln -sf /data/web_static/releases/web_static_{}\
                 /data/web_static/current'.format(new_file))
         return True
     except Exception as e:
