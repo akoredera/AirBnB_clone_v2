@@ -26,7 +26,7 @@ releases/web_static_{}/'.format(new_file))
         run('sudo mv /data/web_static/releases/web_static_{}/web_static/* /data/web_static/releases/web_static_{}/'.format(new_file, new_file))
         run('sudo rm -rf /data/web_static/releases/web_static_{}/web_static'.format(new_file))
         run('sudo rm -rf /data/web_static/current')
-        run('sudo ln sudo ln -sf /data/web_static/releases/web_static_{}\
+        run('sudo ln -sf /data/web_static/releases/web_static_{}\
                 /data/web_static/current'.format(new_file))
         return True
     except Exception as e:
