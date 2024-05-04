@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from fabric.api import *
+import os
 
 env.hosts = ['34.232.67.117', '34.229.255.100']
 env.user = 'ubuntu'
@@ -13,7 +14,7 @@ def do_deploy(archive_path):
      function do_deploy
     '''
     try:
-        if not archive_path:
+        if not (os.path.exists(archive_path):
             return False
         put('archive_path, /tmp/')
         new_file = archive_path[:-4]
