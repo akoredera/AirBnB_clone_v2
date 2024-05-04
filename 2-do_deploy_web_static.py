@@ -16,7 +16,7 @@ def do_deploy(archive_path):
     try:
         if not (os.path.exists(archive_path):
             return False
-        put('archive_path', '/tmp/')
+        put(archive_path, '/tmp/')
         new_file = archive_path[-18:-4]
          run('sudo mkdir -p /data/web_static/\
 releases/web_static_{}/'.format(new_file))
