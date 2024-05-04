@@ -18,9 +18,13 @@ def do_deploy(archive_path):
             return False
         put('archive_path, /tmp/')
         new_file = archive_path[:-4]
+         run('sudo mkdir -p /data/web_static/\
+releases/{}/'.format(new_file))
         run('sudo tar -xzf /tmp/archive_path -C\
-                /data/web_static/releases/{}'.format(new_file))
+                /data/web_static/releases/{}/'.format(new_file))
         run('sudo rm /tmp/archive_path')
+        run('sudo mv /data/web_static/releases/{}/web)static/* /data/web_static/releases/{}'.format(new_file, new_file))
+        run('rm -rf /data/web_static/releases/{}/web_static'.format(new_file))
         run('sudo rm -rf /data/web_static/current')
         run('sudo ln sudo ln -sf /data/web_static/releases/{}\
                 /data/web_static/current'.format(new_file))
