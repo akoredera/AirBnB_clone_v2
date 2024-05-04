@@ -28,6 +28,6 @@ releases/web_static_{}/'.format(new_file))
         run('sudo rm -rf /data/web_static/current')
         run('sudo ln -sf /data/web_static/releases/web_static_{}\
                 /data/web_static/current'.format(new_file))
-        return True
     except Exception as e:
         return False
+    return True
