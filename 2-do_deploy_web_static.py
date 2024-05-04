@@ -18,7 +18,7 @@ def do_deploy(archive_path):
             return False
         put(archive_path, '/tmp/')
         new_file = archive_path[-18:-4]
-         run('sudo mkdir -p /data/web_static/\
+        run('sudo mkdir -p /data/web_static/\
 releases/web_static_{}/'.format(new_file))
         run('sudo tar -xzf /tmp/web_static_{}.tgz -C\
                 /data/web_static/releases/web_static_{}/'.format(new_file, new_file))
