@@ -14,7 +14,7 @@ def do_deploy(archive_path):
      function do_deploy
     '''
     try:
-        if not (os.path.exists(archive_path):
+        if not (os.path.exists(archive_path)):
             return False
         put(archive_path, '/tmp/')
         new_file = archive_path[-18:-4]
