@@ -7,8 +7,6 @@ from 2-do_deploy_web_static import do_deploy
 from 1-pack_web_static import do_pack
 
 env.hosts = ['34.232.67.117', '34.229.255.100']
-env.user = 'ubuntu'
-env.key_filename = '~/.ssh/id_rsa'
 
 
 def deploy():
@@ -18,6 +16,6 @@ def deploy():
     using the function deploy
     '''
     output_file = do_pack()
-    if not output_file:
+    if output_file is None:
         return False
     return do_deploy(output_file)
