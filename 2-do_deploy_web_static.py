@@ -32,6 +32,6 @@ releases/web_static_{}/'.format(new_file))
         run('rm -rf /data/web_static/current')
         run('ln -s /data/web_static/releases/web_static_{}\
                 /data/web_static/current'.format(new_file))
-    except:
+    except Exception as e:
         return False
     return True
