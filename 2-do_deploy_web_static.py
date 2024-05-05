@@ -14,7 +14,7 @@ def do_deploy(archive_path):
      function do_deploy
     '''
     try:
-        if not (os.path.exists(archive_path)):
+        if not (os.path.isfile(archive_path)):
             return False
         put(archive_path, '/tmp/')
         new_file = archive_path[-18:-4]
@@ -34,4 +34,5 @@ releases/web_static_{}/'.format(new_file))
                 /data/web_static/current'.format(new_file))
         return True
     except Exception as e:
-        return False
+        return False 
+    return True
