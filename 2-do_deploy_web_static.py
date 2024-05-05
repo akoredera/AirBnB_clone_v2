@@ -7,6 +7,22 @@ env.user = 'ubuntu'
 env.key_filename = '~/.ssh/id_rsa'
 
 
+def do_pack():
+    '''
+    function generates a .tgz archive from the contents
+    of the web_static folder of AirBnB Clone
+    '''
+    current_datetime = datetime.now()
+    formatted_datetime = strftime("%Y%m%d%H%M%S")
+    try:
+        local('mkdir -p versions')
+        result = local('tar -cvzf versions/web_static_{}.tgz web_static/'
+                       .format(formatted_datetime))
+        return "versions/web_static_{}.tgz".format(formatted_datetime)
+    except Exception as e:
+        return None
+
+
 def do_deploy(archive_path):
     '''
      Fabric script (based on the file 1-pack_web_static.py) that
