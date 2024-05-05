@@ -30,53 +30,52 @@ $str = "<html>
 
 
 package { 'nginx'
-ensure   => 'present',
-provider => 'apt',
+  ensure   => 'present',
+  provider => 'apt',
 }
 
-file { '/data/'
-ensure => 'directory',
+-> file { '/data/'
+  ensure => 'directory',
 }
 
-file { '/data/web_static/'
-ensure => 'directory',
+-> file { '/data/web_static/'
+  ensure => 'directory',
 }
 
-file { '/data/web_static/shared/'
-ensure => 'directory',
+-> file { '/data/web_static/shared/'
+  ensure => 'directory',
 }
 
-file { '/data/web_static/releases/'
-ensure => 'directory',
+-> file { '/data/web_static/releases/'
+  ensure => 'directory',
 }
 
-file { '/data/web_static/releases/test/'
-ensure => 'directory',
+-> file { '/data/web_static/releases/test/'
+  ensure => 'directory',
 }
 
-file { 'index.html':
-path    => '/data/web_static/releases/test/',
-ensure  => 'present',
-content => $str
+-> file { '/data/web_static/releases/test/index.html':
+  ensure  => 'present',
+  content => $str
 }
 
-file { '/data/web_static/current':
-ensure => 'link',
-target => '/data/web_static/releases/test/'
+-> file { '/data/web_static/current':
+  ensure => 'link',
+  target => '/data/web_static/releases/test/'
 }
 
-file { '/data/'
-ensure => 'directory',
-owner  => 'ubuntu',
-group  => 'ubuntu',
+-> file { '/data/'
+  ensure => 'directory',
+  owner  => 'ubuntu',
+  group  => 'ubuntu',
 }
 
-file { '/etc/nginx/sites-enabled/default'
-ensure  => 'present',
-content => $nginx_conf,
+-> file { '/etc/nginx/sites-enabled/default'
+  ensure  => 'present',
+  content => $nginx_conf,
 }
 
-service { 'nginx':
-ensure => 'running',
-enable => true,
+-> service { 'nginx':
+  ensure => 'running',
+  enable => true,
 }
