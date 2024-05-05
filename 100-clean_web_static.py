@@ -2,6 +2,7 @@
 '''
 Keep it clean!
 '''
+import os
 from fabric.api import *
 env.hosts = ['34.232.67.117', '34.229.255.100']
 
