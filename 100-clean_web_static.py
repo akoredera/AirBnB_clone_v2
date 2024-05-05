@@ -4,8 +4,6 @@ Keep it clean!
 '''
 from fabric.api import *
 env.hosts = ['34.232.67.117', '34.229.255.100']
-env.user = 'ubuntu'
-env.key_filename = '~/.ssh/id_rsa'
 
 
 def do_clean(number=0):
