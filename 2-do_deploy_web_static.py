@@ -18,21 +18,20 @@ def do_deploy(archive_path):
             return False
         put(archive_path, '/tmp/')
         new_file = archive_path[-18:-4]
-        run('mkdir -p /data/web_static/\
+        run('sudo mkdir -p /data/web_static/\
 releases/web_static_{}/'.format(new_file))
-        run('tar -xzf /tmp/web_static_{}.tgz -C\
+        run('sudo tar -xzf /tmp/web_static_{}.tgz -C\
                 /data/web_static/releases/web_static_{}/'
             .format(new_file, new_file))
-        run('rm /tmp/web_static_{}.tgz'.format(new_file))
-        run('mv /data/web_static/releases/web_static_{}/web_static/*\
+        run('sudo rm /tmp/web_static_{}.tgz'.format(new_file))
+        run('sudo mv /data/web_static/releases/web_static_{}/web_static/*\
                 /data/web_static/releases/web_static_{}/'
             .format(new_file, new_file))
-        run('rm -rf /data/web_static/releases/web_static_{}/web_static'
+        run('sudo rm -rf /data/web_static/releases/web_static_{}/web_static'
             .format(new_file))
-        run('rm -rf /data/web_static/current')
-        run('ln -s /data/web_static/releases/web_static_{}\
+        run('sudo rm -rf /data/web_static/current')
+        run('sudo ln -s /data/web_static/releases/web_static_{}\
                 /data/web_static/current'.format(new_file))
         return True
     except Exception as e:
-        return False 
-    return True
+        return False
