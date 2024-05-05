@@ -28,12 +28,9 @@ $str = "<html>
   </body>
 </html>"
 
-exec { 'update':
-command => 'user/bin/apt-get update',
-}
 
 package { 'nginx'
-ensure   => 'installed',
+ensure   => 'present',
 provider => 'apt',
 }
 
@@ -64,7 +61,7 @@ content => $str
 }
 
 file { '/data/web_static/current':
-ensure => link,
+ensure => 'link',
 target => '/data/web_static/releases/test/'
 }
 
