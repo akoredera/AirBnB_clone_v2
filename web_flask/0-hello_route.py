@@ -5,6 +5,7 @@ Flash framework HBnB project
 from flask import Flask
 app = Flask(__name__)
 
+
 @app.route('/')
 def hello_HBNB():
     '''
